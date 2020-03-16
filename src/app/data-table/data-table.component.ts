@@ -13,6 +13,7 @@ import { CompaniesService } from "../shared/companies.service";
 export class DataTableComponent implements OnInit {
   displayedColumns: string[] = ["id", "name", "city", "totalIncome"];
   dataSource: MatTableDataSource<Companies>;
+  window : Window;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -28,6 +29,7 @@ export class DataTableComponent implements OnInit {
     };
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.window = window;
   }
 
   applyFilter(event: Event) {
@@ -38,5 +40,8 @@ export class DataTableComponent implements OnInit {
     if (this.dataSource.paginator) {
        this.dataSource.paginator.firstPage();
     }
+  }
+  onClickRow(row) {
+    console.log(row);
   }
 }

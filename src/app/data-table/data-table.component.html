@@ -4,22 +4,43 @@
 </mat-form-field>
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort matSortActive="totalIncome" matSortDirection="desc" matSortDisableClear>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="totalIncome"
+    matSortDirection="desc"
+    matSortDisableClear
+  >
     <ng-container matColumnDef="id">
       <th class="smaller" mat-header-cell *matHeaderCellDef>
         ID
       </th>
-      <td class="smaller" mat-cell *matCellDef="let row">{{ row.id }}</td>
+      <td class="smaller" mat-cell *matCellDef="let row">
+        {{ row.id }}
+      </td>
     </ng-container>
 
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="name" *ngIf="window.innerWidth < 375">
+      <th class="bigger" mat-header-cell *matHeaderCellDef>Name</th>
+      <td class="bigger" mat-cell *matCellDef="let row">
+        {{ row.name | slice: 0:8 }}...
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="name" *ngIf="window.innerWidth > 375">
       <th class="bigger" mat-header-cell *matHeaderCellDef>Name</th>
       <td class="bigger" mat-cell *matCellDef="let row">
         {{ row.name }}
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="city">
+    <ng-container matColumnDef="city" *ngIf="window.innerWidth < 375">
+      <th class="bigger" mat-header-cell *matHeaderCellDef>City</th>
+      <td class="bigger" mat-cell *matCellDef="let row">
+        {{ row.city | slice: 0:8 }}...
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="city" *ngIf="window.innerWidth > 375">
       <th class="bigger" mat-header-cell *matHeaderCellDef>City</th>
       <td class="bigger" mat-cell *matCellDef="let row">{{ row.city }}</td>
     </ng-container>
@@ -28,13 +49,14 @@
       <th class="smaller" mat-header-cell *matHeaderCellDef>
         Total Income
       </th>
-      <td class="smaller" mat-cell *matCellDef="let row">
+      <td class="smaller income" mat-cell *matCellDef="let row">
         {{ row.totalIncome | currency }}
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" [routerLink] = "['/companies', row.id]"   style="cursor:pointer"></tr>
   </table>
+
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
 </div>
