@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { CompaniesService } from "./shared/companies.service";
-import { Companies } from "./shared/companies.model";
 
 @Component({
   selector: "app-root",
@@ -8,22 +7,18 @@ import { Companies } from "./shared/companies.model";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  companies: Companies[] = [];
   constructor(private companiesService: CompaniesService) {}
+  length: number;
 
   ngOnInit() {
-    this.companiesService.fetchCompanies().subscribe(companies => {
-      this.companiesService.lenght = companies.length;
-      this.companiesService.fetchIncome(companies);
+    this.companiesService.fetchCompanies().subscribe(companiesAPI => {
+      this.length = companiesAPI.length;
+      for (const index of companiesAPI) {
+        this.companiesService.fetchOneIncome(index).subscribe(companieOne => {
+          this.companiesService.companies.push(companieOne);
+          this.length--;
+        });
+      }
     });
-  }
-
-  onGet() {
-    this.companiesService.calcIncome();
-  }
-  onIncome() {
-    if (this.companiesService.lenght < 1) {
-      console.log(this.companiesService.companies);
-    }
   }
 }

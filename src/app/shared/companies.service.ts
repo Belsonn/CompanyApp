@@ -7,7 +7,6 @@ import { Income } from "./income.model";
 @Injectable({ providedIn: "root" })
 export class CompaniesService {
   companies: Companies[] = [];
-  lenght: number;
   isFetching: boolean = true;
 
   constructor(private http: HttpClient) {}
@@ -18,27 +17,16 @@ export class CompaniesService {
     );
   }
 
-  fetchIncome(companies: Companies[]) {
-    for (const index in companies) {
-      let companie: Companies = companies[index];
-      this.http
-        .get<{ id: number; incomes: Income[] }>(
-          `https://recruitment.hal.skygate.io/incomes/${companies[index].id}`
-        )
-        .subscribe(incom => {
-          companie.incomes = incom.incomes;
-          this.companies.push(companie);
-          this.lenght--;
-        });
-    }
-  }
-  calcIncome() {
-    for (const company of this.companies) {
-      company.totalIncome = 0;
-      for (const singleIncome of company.incomes) {
-        let inc: number = +singleIncome.value;
-        company.totalIncome += inc;
+  fetchOneIncome(companie: Companies){
+    companie.totalIncome = 0;
+    return this.http.get<{ id: number; incomes: Income[] }>(
+      `https://recruitment.hal.skygate.io/incomes/${companie.id}`
+    ).pipe(map(incomArray => {
+      companie.incomes = incomArray.incomes;
+      for(const singleIncome of incomArray.incomes){
+        companie.totalIncome += (+singleIncome.value);
       }
-    }
+      return companie;
+    }))
   }
 }
