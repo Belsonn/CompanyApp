@@ -1,0 +1,40 @@
+<mat-form-field>
+  <mat-label>Name</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Price Inc" />
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort matSortActive="totalIncome" matSortDirection="desc" matSortDisableClear>
+    <ng-container matColumnDef="id">
+      <th class="smaller" mat-header-cell *matHeaderCellDef>
+        ID
+      </th>
+      <td class="smaller" mat-cell *matCellDef="let row">{{ row.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th class="bigger" mat-header-cell *matHeaderCellDef>Name</th>
+      <td class="bigger" mat-cell *matCellDef="let row">
+        {{ row.name }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+      <th class="bigger" mat-header-cell *matHeaderCellDef>City</th>
+      <td class="bigger" mat-cell *matCellDef="let row">{{ row.city }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalIncome">
+      <th class="smaller" mat-header-cell *matHeaderCellDef>
+        Total Income
+      </th>
+      <td class="smaller" mat-cell *matCellDef="let row">
+        {{ row.totalIncome | currency }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
+</div>

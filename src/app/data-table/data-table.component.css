@@ -1,0 +1,40 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .smaller {
+      width: 16%;
+      padding: 5px 10px;
+  }
+
+  .bigger{
+      width: 34%;
+      padding: 5px 10px;
+  }
+  @media (max-width:420px) {
+
+    table {
+        width: 100%;
+      }
+    .smaller {
+        width: 15%;
+        padding: 2px 3px;
+    }
+  
+    .bigger{
+        width: 35%;
+        max-width: 60px;
+        padding: 2px 3px;
+    }
+    th.mat-header-cell:first-of-type, td.mat-cell:first-of-type {
+        padding: 5px 7px;
+    }
+    th.mat-header-cell:last-of-type, td.mat-cell:last-of-type {
+        padding: 5px 7px;
+    }
+  }
