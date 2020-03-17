@@ -21,7 +21,7 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="name" *ngIf="window.innerWidth < 375">
+    <ng-container matColumnDef="name" *ngIf="window.innerWidth <= 375">
       <th class="bigger" mat-header-cell *matHeaderCellDef>Name</th>
       <td class="bigger" mat-cell *matCellDef="let row">
         {{ row.name | slice: 0:8 }}...
@@ -34,7 +34,7 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="city" *ngIf="window.innerWidth < 375">
+    <ng-container matColumnDef="city" *ngIf="window.innerWidth <= 375">
       <th class="bigger" mat-header-cell *matHeaderCellDef>City</th>
       <td class="bigger" mat-cell *matCellDef="let row">
         {{ row.city | slice: 0:8 }}...
