@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Companies } from "../shared/companies.model";
 import { CompaniesService } from "../shared/companies.service";
-import { FormControl } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 
 @Component({
