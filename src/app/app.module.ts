@@ -7,19 +7,27 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatCardModule } from "@angular/material/card";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
+import { ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { DataTableComponent } from "./data-table/data-table.component";
 import { DetailsComponent } from "./details/details.component";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { HomeComponent } from './home/home.component';
-import { MatCardModule } from '@angular/material/card';
-import { DataLoadedGuard } from './shared/dataLoadedGuard.service';
-
+import { LoadingSpinnerComponent } from "./loading-spinner/loading-spinner.component";
+import { HomeComponent } from "./home/home.component";
+import { DataLoadedGuard } from "./shared/dataLoadedGuard.service";
 
 @NgModule({
-  declarations: [AppComponent, DataTableComponent, DetailsComponent, LoadingSpinnerComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    DataTableComponent,
+    DetailsComponent,
+    LoadingSpinnerComponent,
+    HomeComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,7 +39,10 @@ import { DataLoadedGuard } from './shared/dataLoadedGuard.service';
     MatSortModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatCardModule
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule
   ],
   providers: [DataLoadedGuard],
   bootstrap: [AppComponent]

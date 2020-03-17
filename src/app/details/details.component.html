@@ -1,24 +1,72 @@
-<a [routerLink]="['/companies']">Wróć</a>
+<div class="mb-4">
+  <a [routerLink]="['/companies']"><i class="fa fa-arrow-left fa-2x"></i></a>
+</div>
 
 <mat-card class="example-card">
+  <!-- <a [routerLink]="['/companies']"><i class="fa fa-arrow-left fa-2x"></i></a> -->
   <mat-card-header>
     <mat-card-title>{{ company.name }}</mat-card-title>
     <mat-card-subtitle>{{ company.city }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">Average Income: </div>
+    <div class="row row-cols-3">
+      <div class="col">Total Income:</div>
+      <div class="col">Average All-Time Income:</div>
+      <div class="col">Last Month Income:</div>
+      <div class="col income">{{ company.totalIncome | currency }}</div>
+      <div class="col income">{{ company.averageIncome | currency }}</div>
+      <div class="col income">{{ company.lastMonthIncome | currency }}</div>
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 income">{{averageIncome | currency}}</div>
+    <div class="row mt-4">
+      <div class="col-2"></div>
+      <div class="col text-center">
+        <h4>Calculate incomes in a specified time!</h4>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">Last month </div>
+    <div class="row mt-4">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Start Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker1"
+            [max]="endDate"
+            [value]="startDate"
+            (dateChange)="updateValueStart($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>End Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            [min]="startDate"
+            [value]="endDate"
+            (dateChange)="updateValueEnd($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 income">{{lastMonthIncome | currency}}</div>
+    <div class="row row-cols-2 mt-4">
+      <div class="col">Total income in the period:</div>
+      <div class="col">Average income in the period:</div>
+      <div class="col income">{{ company.selectedTotalIncome | currency }}</div>
+      <div class="col income">{{ company.selectedAvgIncome | currency }}</div>
     </div>
   </mat-card-content>
-  <mat-card-actions>
-  </mat-card-actions>
+  <!-- <mat-card-actions>
+  </mat-card-actions> -->
 </mat-card>
