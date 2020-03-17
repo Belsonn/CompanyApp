@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatCardModule } from "@angular/material/card";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
+import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -19,6 +20,7 @@ import { DetailsComponent } from "./details/details.component";
 import { LoadingSpinnerComponent } from "./loading-spinner/loading-spinner.component";
 import { HomeComponent } from "./home/home.component";
 import { DataLoadedGuard } from "./shared/dataLoadedGuard.service";
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { DataLoadedGuard } from "./shared/dataLoadedGuard.service";
     DataTableComponent,
     DetailsComponent,
     LoadingSpinnerComponent,
-    HomeComponent
+    HomeComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { DataLoadedGuard } from "./shared/dataLoadedGuard.service";
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
     ReactiveFormsModule
   ],
   providers: [DataLoadedGuard],

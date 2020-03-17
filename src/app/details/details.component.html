@@ -9,10 +9,11 @@
     <mat-card-subtitle>{{ company.city }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
+    <hr>
     <div class="row row-cols-3">
-      <div class="col">Total Income:</div>
-      <div class="col">Average All-Time Income:</div>
-      <div class="col">Last Month Income:</div>
+      <div class="col font-weight-bold">Total Income:</div>
+      <div class="col font-weight-bold">Average All-Time Income:</div>
+      <div class="col font-weight-bold">Last Month Income:</div>
       <div class="col income">{{ company.totalIncome | currency }}</div>
       <div class="col income">{{ company.averageIncome | currency }}</div>
       <div class="col income">{{ company.lastMonthIncome | currency }}</div>
@@ -61,10 +62,13 @@
       </div>
     </div>
     <div class="row row-cols-2 mt-4">
-      <div class="col">Total income in the period:</div>
-      <div class="col">Average income in the period:</div>
+      <div class="col font-weight-bold">Total income in the period:</div>
+      <div class="col font-weight-bold">Average income in the period:</div>
       <div class="col income">{{ company.selectedTotalIncome | currency }}</div>
       <div class="col income">{{ company.selectedAvgIncome | currency }}</div>
+    </div>
+    <div class="mt-4">
+      <app-chart></app-chart>
     </div>
   </mat-card-content>
   <!-- <mat-card-actions>
