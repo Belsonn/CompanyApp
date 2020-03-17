@@ -8,8 +8,6 @@ import { Income } from "./income.model";
 export class CompaniesService {
   companies: Companies[] = [];
   isFetching: boolean = true;
-  pageSize: number = 10;
-  pageIndex: number = 0;
 
   constructor(private http: HttpClient) {}
 
@@ -37,10 +35,4 @@ export class CompaniesService {
     }))
   }
 
-  // checkData() {
-  //   const promise = new Promise((resolve, reject) => {
-  //     resolve(this.companies.length)
-  //   })
-  //   return promise;
-  // }
 }
