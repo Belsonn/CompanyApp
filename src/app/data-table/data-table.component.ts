@@ -1,24 +1,26 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Companies } from "../shared/companies.model";
 import { CompaniesService } from "../shared/companies.service";
+import { PaginateService } from '../shared/paginate.service';
 
 @Component({
   selector: "app-data-table",
   templateUrl: "./data-table.component.html",
   styleUrls: ["./data-table.component.css"]
 })
-export class DataTableComponent implements OnInit {
+export class DataTableComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ["id", "name", "city", "totalIncome"];
   dataSource: MatTableDataSource<Companies>;
   window : Window;
+  page: number = 10;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private companiesService: CompaniesService) {
+  constructor(private companiesService: CompaniesService, private paginateService: PaginateService) {
     this.dataSource = new MatTableDataSource(this.companiesService.companies);
   }
 
@@ -28,6 +30,8 @@ export class DataTableComponent implements OnInit {
       return data.name.toLowerCase().includes(filter);
     };
     this.dataSource.paginator = this.paginator;
+    this.paginator.pageSize = this.paginateService.pageSize;
+    this.paginator.pageIndex = this.paginateService.pageIndex;
     this.dataSource.sort = this.sort;
     this.window = window;
   }
@@ -41,7 +45,9 @@ export class DataTableComponent implements OnInit {
        this.dataSource.paginator.firstPage();
     }
   }
-  onClickRow(row) {
-    console.log(row);
+
+  ngOnDestroy() {
+    this.paginateService.pageSize = this.paginator.pageSize;
+    this.paginateService.pageIndex = this.paginator.pageIndex;
   }
 }
