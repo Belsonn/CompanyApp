@@ -6,14 +6,20 @@ import { MatTableModule } from "@angular/material/table";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSortModule } from "@angular/material/sort";
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from "@angular/material/paginator";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { DataTableComponent } from "./data-table/data-table.component";
-import { DetailsComponent } from './details/details.component';
+import { DetailsComponent } from "./details/details.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { HomeComponent } from './home/home.component';
+import { MatCardModule } from '@angular/material/card';
+import { DataLoadedGuard } from './shared/dataLoadedGuard.service';
+
 
 @NgModule({
-  declarations: [AppComponent, DataTableComponent, DetailsComponent],
+  declarations: [AppComponent, DataTableComponent, DetailsComponent, LoadingSpinnerComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,9 +29,11 @@ import { DetailsComponent } from './details/details.component';
     MatFormFieldModule,
     MatInputModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatCardModule
   ],
-  providers: [],
+  providers: [DataLoadedGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
