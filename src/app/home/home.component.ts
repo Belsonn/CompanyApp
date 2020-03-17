@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
         this.length = companiesAPI.length;
         for (const index of companiesAPI) {
           this.companiesService.fetchOneIncome(index).subscribe(companieOne => {
+            companieOne.calcTotalIncome();
             this.companiesService.companies.push(companieOne);
             this.length--;
           });
