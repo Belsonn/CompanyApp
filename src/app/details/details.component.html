@@ -1,1 +1,24 @@
-<p>details works!</p>
+<a [routerLink]="['/companies']">Wróć</a>
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ company.name }}</mat-card-title>
+    <mat-card-subtitle>{{ company.city }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">Average Income: </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 income">{{averageIncome | currency}}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">Last month </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 income">{{lastMonthIncome | currency}}</div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>
