@@ -8,6 +8,8 @@ import { CompaniesService } from "./companies.service";
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 
+
+// this service prevents the component from loading incorrectly
 @Injectable()
 export class DataLoadedGuard implements CanActivate {
   constructor(

@@ -28,7 +28,7 @@
         {{ row.id }}
       </td>
     </ng-container>
-
+    <!-- Using pipes to shorten words on smaller device -->
     <ng-container matColumnDef="name" *ngIf="window.innerWidth <= 375">
       <th class="bigger" mat-header-cell *matHeaderCellDef>Name</th>
       <td class="bigger" mat-cell *matCellDef="let row">
@@ -41,7 +41,7 @@
         {{ row.name }}
       </td>
     </ng-container>
-
+    <!-- Using pipes to shorten words on smaller device -->
     <ng-container matColumnDef="city" *ngIf="window.innerWidth <= 375">
       <th class="bigger" mat-header-cell *matHeaderCellDef>City</th>
       <td class="bigger" mat-cell *matCellDef="let row">
@@ -61,8 +61,9 @@
         {{ row.totalIncome | currency }}
       </td>
     </ng-container>
-
+    
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <!-- added router link to all rows -->
     <tr mat-row *matRowDef="let row; columns: displayedColumns" [routerLink] = "['/companies', row.id]"   style="cursor:pointer"></tr>
   </table>
 

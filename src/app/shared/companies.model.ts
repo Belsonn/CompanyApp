@@ -10,7 +10,8 @@ export class Companies {
   lastMonthIncome: number;
   selectedAvgIncome: number;
   selectedTotalIncome: number;
-
+  
+  // Getting data from json and converting to Object, initialize other properties
   constructor(json: any) {
     this.id = json.id;
     this.name = json.name;
@@ -22,16 +23,17 @@ export class Companies {
     this.selectedAvgIncome = 0;
     this.selectedTotalIncome = 0;
   }
-
+  // Calculates total income of Company
   calcTotalIncome() {
     for (const x of this.incomes) {
       this.totalIncome += +x.value;
     }
   }
+  // Calculates average Income of Company
   calcAverageIncome() {
     this.averageIncome = this.totalIncome / this.incomes.length;
   }
-
+  // Calculates income from last Month
   calcLastMonthIncome() {
     let date = new Date();
     if (date.getMonth() == 0) {
@@ -49,7 +51,7 @@ export class Companies {
       }
     }
   }
-
+  // Calculates avg incomes for a given time
   calcSelectedAverage(startDate: Date, endDate: Date) {
     let sum: number = 0;
     let total: number = 0;
@@ -59,13 +61,14 @@ export class Companies {
         total++;
       }
     }
+    // It can be NaN so set to 0 if it is
     if((sum/total)){
       this.selectedAvgIncome = (sum / total)
     } else {
       this.selectedAvgIncome = 0;
     }
   }
-
+  // Calculates incomes for a given time
   calcSelectedTotal(startDate: Date, endDate: Date) {
     this.selectedTotalIncome = 0;
     for (const index of this.incomes) {

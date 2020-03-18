@@ -11,7 +11,8 @@ const routes: Routes = [
     canActivate: [DataLoadedGuard]
   },
   { path: "companies", component: HomeComponent },
-  { path: "", redirectTo: "/companies", pathMatch: "prefix" }
+  { path: "", redirectTo: "/companies", pathMatch: "prefix" },
+  { path: "**", redirectTo: "/companies" }
 ];
 
 @NgModule({

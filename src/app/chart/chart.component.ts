@@ -9,8 +9,8 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./chart.component.css"]
 })
 export class ChartComponent implements OnInit {
-  company: Companies;
-  year: number = 2019;
+  company: Companies; // store selected company
+  year: string = '2019'; // default year
   incomes: { y: number; label: string }[] = [
     { y: 0, label: "Jan."},
     { y: 0, label: "Feb."},
@@ -24,30 +24,30 @@ export class ChartComponent implements OnInit {
     { y: 0, label: "Oct."},
     { y: 0, label: "Nov."},
     { y: 0, label: "Dec."}
-  ];
+  ]; // this is how looks data for chart
   constructor(
     private companiesService: CompaniesService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params["id"];
-    this.company = this.companiesService.companies.find(el => id == el.id);
-    this.calcMonthlyIncomes();
-    this.renderChart()
+    const id = this.route.snapshot.params["id"]; // getting id from params
+    this.company = this.companiesService.companies.find(el => id == el.id); // initialize company
+    this.calcMonthlyIncomes(); // render data for chart
+    this.renderChart() // render chart
   }
   calcMonthlyIncomes() {
     for(const x of this.incomes) {
-      x.y = 0;
+      x.y = 0; // reseting all data
     }
     for (const index of this.company.incomes) {
-      let date = index.date.getMonth();
-      if (index.date.getFullYear() == this.year) {
+      let date = index.date.getMonth(); // get Month and if year is matching add it to Array
+      if (index.date.getFullYear() == +this.year) {
         this.incomes[date].y += +index.value;
       }
     }
   }
-
+  // If user changed year or onInit, it renders chart using canvasJS library with given Data
   renderChart() {
     this.calcMonthlyIncomes()
     let chart = new CanvasJS.Chart("chartContainer", {

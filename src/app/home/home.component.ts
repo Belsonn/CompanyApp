@@ -9,6 +9,11 @@ import { CompaniesService } from '../shared/companies.service';
 export class HomeComponent implements OnInit {
   constructor(private companiesService: CompaniesService) {}
   length: number;
+  error: Error
+
+  // it has length property for check if data is already here and use ngIf properly
+  // it calculates Total Income because its needed for this view
+  // subscring all companies and for each one subscribing to get incomes for this single company
 
   ngOnInit() {
     if(!(this.companiesService.companies.length > 0)){
