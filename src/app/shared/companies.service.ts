@@ -10,7 +10,6 @@ import { Income } from "./income.model";
 @Injectable({ providedIn: "root" })
 export class CompaniesService {
   companies: Companies[] = [];
-  isFetching: boolean = true;
 
   constructor(private http: HttpClient) {}
   // Fetch all companies.
