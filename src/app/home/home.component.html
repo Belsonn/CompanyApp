@@ -1,2 +1,7 @@
-<app-loading-spinner *ngIf="length > 0"></app-loading-spinner>
-<app-data-table *ngIf="length < 1"></app-data-table>
+<app-loading-spinner *ngIf="length > 0 && !error"></app-loading-spinner>
+<app-data-table *ngIf="length < 1 && !error"></app-data-table>
+<div class="alert alert-danger" *ngIf="error">
+    <h3>Something went wrong</h3>
+    <p>{{error.message}}</p>
+    <button class="btn btn-danger" (click)= "onHandleError()">Try again!</button>
+</div>
