@@ -11,19 +11,19 @@ import { ActivatedRoute } from "@angular/router";
 export class ChartComponent implements OnInit {
   company: Companies; // store selected company
   year: string = '2019'; // default year
-  incomes: { y: number; label: string }[] = [
-    { y: 0, label: "Jan."},
-    { y: 0, label: "Feb."},
-    { y: 0, label: "Mar."},
-    { y: 0, label: "Apr."},
-    { y: 0, label: "May"},
-    { y: 0, label: "Jun."},
-    { y: 0, label: "Jul."},
-    { y: 0, label: "Aug."},
-    { y: 0, label: "Sep."},
-    { y: 0, label: "Oct."},
-    { y: 0, label: "Nov."},
-    { y: 0, label: "Dec."}
+  incomes: { y: number; label: string, color: string }[] = [
+    { y: 0, label: "Jan.", color: ""},
+    { y: 0, label: "Feb.", color: ""},
+    { y: 0, label: "Mar.", color: ""},
+    { y: 0, label: "Apr.", color: ""},
+    { y: 0, label: "May", color: ""},
+    { y: 0, label: "Jun.", color: ""},
+    { y: 0, label: "Jul.", color: ""},
+    { y: 0, label: "Aug.", color: ""},
+    { y: 0, label: "Sep.", color: ""},
+    { y: 0, label: "Oct.", color: ""},
+    { y: 0, label: "Nov.", color: ""},
+    { y: 0, label: "Dec.", color: ""}
   ]; // this is how looks data for chart
   constructor(
     private companiesService: CompaniesService,
@@ -47,9 +47,22 @@ export class ChartComponent implements OnInit {
       }
     }
   }
+
+  renderColor() {
+    for(const index of this.incomes) {
+      if(index.y >= 30000){
+        index.color = "#85d64b"
+      } else if (index.y >=15000) {
+        index.color = "#dce359";
+      } else {
+        index.color = "#e05e5e";
+      }
+    }
+  }
   // If user changed year or onInit, it renders chart using canvasJS library with given Data
   renderChart() {
     this.calcMonthlyIncomes()
+    this.renderColor();
     let chart = new CanvasJS.Chart("chartContainer", {
       animationEnabled: true,
       exportEnabled: true,
