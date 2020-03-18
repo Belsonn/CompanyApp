@@ -2,6 +2,6 @@
 <app-data-table *ngIf="length < 1 && !error"></app-data-table>
 <div class="alert alert-danger" *ngIf="error">
     <h3>Something went wrong</h3>
-    <p>{{error.message}}</p>
+    <p>{{error}}</p>
     <button class="btn btn-danger" (click)= "onHandleError()">Try again!</button>
 </div>
