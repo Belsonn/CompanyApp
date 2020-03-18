@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Install dependencies
 
-Run 'npm i' to install all dependencies, it may take a while. You need Node.JS installed on your device.
+Run `npm i` to install all dependencies, it may take a while. You need Node.JS installed on your device.
 
 ## Development server
 
